@@ -1,0 +1,47 @@
+// @font-face {
+//   font-family: "FuturaBookC";
+//   src: url("/fonts/futurabookc.woff2") format("woff2"),
+//     url("/fonts/futurabookc.woff") format("woff");
+// }
+
+// @font-face {
+//   font-family: "fontello";
+//   src: url("/fonts/fontello.woff2?85887906") format("woff2"),
+//     url("/fonts/fontello.woff?85887906") format("woff");
+//   font-weight: normal;
+//   font-style: normal;
+// }
+@import "./fonts/fonts";
+body {
+  font-family: "FuturaBookC";
+}
+.block {
+  width: 500px;
+  height: 500px;
+  border: solid darkblue;
+  &__item {
+    color: darkblue;
+    text-align: center;
+    display: flex;
+    align-items: center;
+  }
+}
+h3 {
+  color: red;
+}
+img {
+  width: 500px;
+  height: 500px;
+}
+.img {
+  background-image: url("../img/webpack-logo.png");
+  border: solid green;
+  width: 500px;
+  height: 500px;
+}
+.block-vue {
+  color: red;
+  width: 300px;
+  height: 300px;
+  border: solid red;
+}
