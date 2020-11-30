@@ -48,12 +48,6 @@ module.exports = {
             template: `${PAGES_DIR}/${page}`,
             filename: `./${page.replace(/\.pug/,'.html')}`
         })),
-        // new HtmlWebpackPlugin({
-        //     //template: `${PATHS.src}/index.html`,
-        //     //filename: './index.html'
-        //     template: `${PAGES_DIR}/${page}`,
-        //     filename: `./${page.replace(/\.pug/,'.html')}`
-        // }),
         new MiniCssExtractPlugin({
             filename: `[name].[hash].css`
         }),
@@ -66,9 +60,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns:[
-                {from: `${PATHS.src}/img`, to:  `img`},
-                //{from: `${PATHS.src}/fonts`, to:  `fonts`},
-                {from: `${PATHS.src}/static`, to:  `static`},
+                {from: `${PATHS.src}/static`, to:  `static`}
             ]
         })
 
@@ -83,12 +75,44 @@ module.exports = {
                 }
             },
             {
-                test:/\.(png|jpg|gif|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: `img/[name].[ext]`
+                test:/\.(png|jpg|jpeg|gif|svg)$/,
+                use:[
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: `img/[name].[ext]`
+                        }
 
-                }
+                        // options: {
+                        //     name: `img/[name].[ext]`,
+                        //     //outputPath: `./img`
+                        //     //outputPath: './',
+                        //     //publicPath: `img`
+                        // },
+                        
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                            },
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: [0.65, 0.90],
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            webp: {
+                                quality: 75
+                            },
+                        }
+                    },
+                ]
             },
             {
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -139,32 +163,6 @@ module.exports = {
                     }
                 }
             }
-            // {
-            //     test:/\.s[ac]ss$/,
-            //     use: [
-            //         'style-loader',
-            //         MiniCssExtractPlugin.loader,
-            //         {
-            //             loader: 'css-loader',
-            //             options: {sourceMap: true}
-            //         },
-            //         {
-            //             loader: 'postcss-loader',
-            //             options: {
-            //                 postcssOptions:{
-            //                     plugins:[
-            //                         'autoprefixer',
-            //                         'cssnano'
-            //                     ]
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             loader: 'sass-loader',
-            //             options: {sourceMap: true}
-            //         }
-            //     ]
-            // },
         ]
     }
 }
