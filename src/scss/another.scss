@@ -45,3 +45,22 @@ img {
   height: 300px;
   border: solid red;
 }
+.test{
+  z-index: 12;
+  position: absolute;
+  position: fixed;
+  display: block;
+  display: none;
+  display: inline;
+  display: inline-block;
+  visibility: hidden;
+  visibility: visible;
+  overflow: hidden;
+  overflow: visible;
+  overflow: hidden;
+  overflow: visible;
+  overflow: scroll;
+  overflow: hidden;
+  overflow: visible;
+  display: none;
+}
